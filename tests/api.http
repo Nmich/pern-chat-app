@@ -1,7 +1,8 @@
 @baseUrl = http://localhost:5000
 @apiUrl = {{baseUrl}}/api
-
-@signup = {{apiUrl}}/auth/signup
+@auth = {{apiUrl}}/auth
+@signup = {{auth}}/signup
+@login = {{auth}}/login
 
 ###
 POST {{signup}}
@@ -13,5 +14,27 @@ Content-Type: application/json
     "password": "654321",
     "confirmPassword": "654321",
     "gender": "female"
+    
+}
+
+###
+POST {{signup}}
+Content-Type: application/json
+
+{
+    "fullName": "Toto Toto",
+    "username": "toto",
+    "password": "toto",
+    "confirmPassword": "tata",
+    "gender": "male"   
+}
+
+###
+POST {{login}}
+Content-Type: application/json
+
+{
+    "username": "janedoe",
+    "password": "654321"
     
 }

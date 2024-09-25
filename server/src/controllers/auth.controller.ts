@@ -3,7 +3,7 @@ import prisma from "../db/prisma.js"
 import bcryptjs from "bcryptjs"
 import generateToken from "../utils/generateToken.js"
 
-export const signup = async ( req: Request, res: Response) => {
+export const signup = async (req: Request, res: Response) => {
 	try {
 		const { fullName, username, password, confirmPassword, gender } = req.body;
 
@@ -60,6 +60,30 @@ export const signup = async ( req: Request, res: Response) => {
 	}
 }
 
-export const login = async (res: Response, req: Request) => { }
+export const login = async (req: Request, res: Response) => {
+try {
+	const {username, password} = req.body
+	const user = await prisma.user.findUnique({where: {username}})
 
-export const logout = async (res: Response, req: Request) => { }
+	if(!user){
+		return res.status(400).json({error:"Invalid credentials"})
+	}
+	const isPasswordCorrect = await bcryptjs.compare(password, user.password)
+
+	if(!isPasswordCorrect){
+		return res.status(400).json({error: "Invalid credentials"})
+	}
+
+	res.status(200).json({
+		id: user.id,
+		fullName: user.fullName,
+		username: user.username,
+		profilePic: user.profilePic
+	})
+} catch (error:any) {
+	console.log("Error in login controller", error.message)
+	res.status(500).json({ error: "Internal Server Error" })
+}
+}
+
+export const logout = async (req: Request, res: Response) => { }
