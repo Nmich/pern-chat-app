@@ -3,6 +3,9 @@
 @auth = {{apiUrl}}/auth
 @signup = {{auth}}/signup
 @login = {{auth}}/login
+@logout = {{auth}}/logout
+@me = {{auth}}/me
+
 
 ###
 POST {{signup}}
@@ -14,6 +17,19 @@ Content-Type: application/json
     "password": "654321",
     "confirmPassword": "654321",
     "gender": "female"
+    
+}
+
+###
+POST {{signup}}
+Content-Type: application/json
+
+{
+    "fullName": "John Doe",
+    "username": "johnndoe",
+    "password": "123456",
+    "confirmPassword": "123456",
+    "gender": "male"
     
 }
 
@@ -38,3 +54,20 @@ Content-Type: application/json
     "password": "654321"
     
 }
+
+
+###
+POST {{login}}
+Content-Type: application/json
+
+{
+    "username": "johndoe",
+    "password": "123456"
+    
+}
+
+###
+POST {{logout}}
+
+###
+GET {{me}}
