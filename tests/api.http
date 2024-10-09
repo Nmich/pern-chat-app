@@ -1,11 +1,21 @@
 @baseUrl = http://localhost:5000
 @apiUrl = {{baseUrl}}/api
+
+# Authentification
 @auth = {{apiUrl}}/auth
 @signup = {{auth}}/signup
 @login = {{auth}}/login
 @logout = {{auth}}/logout
 @me = {{auth}}/me
 
+# Messages
+@messages = {{apiUrl}}/messages
+@send = {{messages}}/send
+@conversations = {{messages}}/conversations
+
+# Users
+@john = /cm1l9kn09000014dysgmsfqoy
+@jane = /cm1laz4eo0000gyx25ot7o7re
 
 ###
 POST {{signup}}
@@ -71,3 +81,18 @@ POST {{logout}}
 
 ###
 GET {{me}}
+
+###
+POST {{send}}{{john}}
+Content-Type: application/json
+
+{
+    "message": "Hi jane, this is my second message !"    
+}
+
+###
+GET {{messages}}{{john}}
+
+###
+GET {{conversations}}
+
