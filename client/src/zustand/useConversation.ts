@@ -6,17 +6,18 @@ import { create } from "zustand"
 //     porfilePic:string;
 // }
 
-type MessagesType={
+export type MessageType={
     id:string;
     body:string;
     senderId:string;
+    createdAt:string;
 }
 
 interface ConversationState {
     selectedConversation: ConversationType | null;
-    messages: MessagesType[];
+    messages: MessageType[];
     setSelectedConversation: (conversation: ConversationType | null) => void;
-    setMessages: (messages: MessagesType[]) => void;
+    setMessages: (messages: MessageType[]) => void;
 }
 
 const useConversation = create<ConversationState>((set) => ({

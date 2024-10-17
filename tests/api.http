@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:5000
+@baseUrl = http://localhost:5001
 @apiUrl = {{baseUrl}}/api
 
 # Authentification
@@ -87,7 +87,23 @@ POST {{send}}{{john}}
 Content-Type: application/json
 
 {
+    "message": "Hi jane !"    
+}
+
+###
+POST {{send}}{{john}}
+Content-Type: application/json
+
+{
     "message": "Hi jane, this is my second message !"    
+}
+
+###
+POST {{send}}{{john}}
+Content-Type: application/json
+
+{
+    "message": "Hi jane, this is my third message !"    
 }
 
 ###
